@@ -1,3 +1,4 @@
+{{--
 @extends('layouts.app')
 
 @section('content')
@@ -8,7 +9,11 @@
                 <div class="panel-heading">Login</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    --}}
+{{--<form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    --}}{{--
+
+                    <form class="form-horizontal" method="POST" action="employee">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -67,3 +72,4 @@
     </div>
 </div>
 @endsection
+--}}

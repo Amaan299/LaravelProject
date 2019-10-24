@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\EmployeeModel;
+use App\Events;
 use Illuminate\Http\Request;
 class HrController extends Controller
 {
     public function viewEmp(){
 
         $employee = EmployeeModel::all()
-            ->where('designation','Developer');
+            ->where('designation','Developer' || 'Manager');
 
         return view('hr_viewemployee',compact('employee'));
     }
 
     public function addEmployee(){
         return view('hr_addemployee');
-    }
-    public function viewAttend(){
-        return view('hr_viewattend');
     }
     public function viewReport(){
         return view('hr_viewreport');
@@ -64,5 +62,8 @@ class HrController extends Controller
 
         return redirect('hr_viewemployee');
     }
-
+    public function viewAttend(){
+        $employee = Events::all();
+        return view('hr_viewattend',compact('employee'));
+    }
 }

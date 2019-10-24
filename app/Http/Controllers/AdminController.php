@@ -61,5 +61,4 @@ class AdminController extends Controller
         $hr->delete();
         return redirect('admin_viewhr');
     }
-
 }

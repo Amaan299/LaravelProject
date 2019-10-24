@@ -23,6 +23,7 @@ class CreateEmployeeModelsTable extends Migration
             $table->string('designation');
             $table->integer('salary');
             $table->string('cover');
+
             $table->timestamps();
         });
     }

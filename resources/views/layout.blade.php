@@ -23,5 +23,7 @@
 @yield('viewhr')
 @yield('edithr')
 @yield('markattend')
+@yield('viewattend')
+@yield('hrviewattend')
 </body>
 </html>

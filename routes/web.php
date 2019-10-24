@@ -12,18 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('loginForm');
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+/*
+Route::get('/user', 'HomeController@index')->name('loginForm');*/
 
 Auth::routes();
 
 Route::get('/admin',function (){
     return view('admin');
 });
+//Route::post('validation', 'MyUserController@index')->name('validate');
+Route::post('validation', 'MyUserController@validation')->name('validate');
 
 Route::get('/admin_addhr', 'AdminController@addHr')->name('hr_addemployee');
 Route::post('/admin_addhr', 'AdminController@store')->name('admin_addhr');
@@ -53,3 +55,12 @@ Route::get('/employee_viewattend', 'EmployeeController@viewAttend')->name('emplo
 
 Route::get('/employee_markattend','EventsController@markAttend')->name('events.markattend');
 Route::post('/employee_markattend/timein', 'EventsController@markTimein')->name('timein');
+Route::get('/employee_markattend/{id}', 'EventsController@markAttend')->name('marktimein');
+Route::get('/employee_viewattend', 'EventsController@viewEmployee')->name('viewemployee');
+
+
+
+
+Route::get('/mail', 'EmployeeController@myMail')->name('mail');
+
+Route::get('/send/email', 'HomeController@mymail');

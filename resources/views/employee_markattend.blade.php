@@ -10,27 +10,7 @@
 
         {!! $calendar->calendar() !!}
         {!! $calendar->script() !!}
-       {{-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-    <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
 
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Employee Attendance</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Some text in the modal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>--}}
     <!-- The Modal -->
         <div id="myModal" style="margin-left: 35%" class="modal" >
 
@@ -38,20 +18,21 @@
             <div class="modal-content" style="width:45%">
                 <span class="close" style="margin-top: 3px;margin-right: 10px">&times;</span>
                 <div class="container" style="width: 84%;">
-                    <h4>Employee Attendance</h4>
+                    <h4 style="text-align: center">Employee Attendance</h4>
 
                     <form method="POST" action="/employee_markattend/timein">
                         {{csrf_field()}}
+
                         <div class="row">
-                            <div class="col-sm-6"><button required id="in" type="button" class="btn btn-success" onclick="DothisFun()" style="font-size:16px;padding: 8px;font-size: 16px;width: 100%; " >Time in </button>
+                            <div class="col-sm-6"><button required id="in"  type="button" class="btn btn-primary" onclick="DothisFun()" style="font-size:16px;padding: 8px;font-size: 16px;width: 100%; " >Time in </button>
                             </div>
-                            <div class="col-sm-6"><input class="ShowTime" type="text"  placeholder="Starting Time"  disabled style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e;" >
+                            <div class="col-sm-6"><input name="CurrTime" value="@if(isset($myTime->time_in)){{ $myTime->time_in }}@endif" class="ShowTime" type="text"  placeholder="Starting Time"  disabled="disabled" style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e;" >
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-6"><button required type="button" class="btn btn-danger" onclick="DothisFun2()" style="font-size:16px;padding: 8px;font-size: 16px;width: 100%; margin-top: 5px;"  >Time Out </button>
                             </div>
-                            <div class="col-sm-6"><input  class="ShowEndTime" type="text"  placeholder="Leaving Time"  disabled style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e ;margin-top: 5px;" ></div>
+                            <div class="col-sm-6"><input name="EndTime" value="@if(isset($myTime->time_out)){{ $myTime->time_out }}@endif" class="ShowEndTime" type="text"  placeholder="Leaving Time"  disabled style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e ;margin-top: 5px;" ></div>
                             <p class="demo-picked" >
                                 <span data-calendar-label="picked" id="pick" style="display: none"></span>
 
@@ -105,26 +86,7 @@
             }
 
         </script>
-    {{--    <script>
 
-            $(document).ready(function(){
-                $.ajax({
-                    url: 'checkSign',
-                    success: function (response){
-                        if(response === undefined || response == null || response.length <= 0){
-                            $("#in").attr("active", true);
-                        }
-                        else{
-                            $("#in").attr("disabled", true);
-                            $(".ShowTime").val(response);
-
-                        }
-
-                    }
-                });
-            });
-
-        </script>--}}
 
         <script>// Get the modal
 
@@ -151,5 +113,7 @@
 
 
         </script>
-    </div>
+
+
+
 @endsection

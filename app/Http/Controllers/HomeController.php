@@ -23,7 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('loginForm');
+    }
+
+    public function mymail()
+    {
+        $name = 'Aman Ullah';
+        Mail::to('bsef15m527@pucit.edu.pk')->send(new SendMailable($name));
+
+        return 'Email was sent';
     }
 
 
