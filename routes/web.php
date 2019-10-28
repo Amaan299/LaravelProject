@@ -25,7 +25,7 @@ Route::get('/admin',function (){
     return view('admin');
 });
 //Route::post('validation', 'MyUserController@index')->name('validate');
-Route::post('validation', 'MyUserController@validation')->name('validate');
+Route::post('/employee_markattend', 'MyUserController@validation')->name('validate');
 
 Route::get('/admin_addhr', 'AdminController@addHr')->name('hr_addemployee');
 Route::post('/admin_addhr', 'AdminController@store')->name('admin_addhr');
@@ -44,20 +44,24 @@ Route::get('/hr_viewemployee/{editemployee}/edit','HrController@editEmployee');
 Route::delete('/hr_viewemployee/{deleteemployee}/delete','HrController@deleteEmployee');
 Route::put('/hr_viewemployee/{editemployee}','HrController@updateEmployee');
 Route::get('/hr_viewemployee/{editemployee}','HrController@viewEmployee');
+
+Route::get('/hr_sendmail',function(){
+    return view('hr_sendmail');
+});
+Route::post('/hr_addmail', 'HrController@addMail')->name('hr_addmail');
+
+Route::get('/hr_viewattend/{editattend}/edit','HrController@editAttend');
+Route::delete('/hr_viewattend/{deleteattend}/delete','HrController@deleteAttend');
+Route::put('/hr_viewattend/{editattend}','HrController@updateAttend');
+Route::get('/hr_viewattend/{editattend}','HrController@viewAttend');
+
 Route::get('/hr_viewattend', 'HrController@viewAttend')->name('hr_viewattend');
 Route::get('/hr_viewreport', 'HrController@viewReport')->name('hr_viewreport');
 
-Route::get('/employee',function (){
-    return view('employee');
-});
-Route::get('/employee_viewattend', 'EmployeeController@viewAttend')->name('employee_viewattend');
 
-
-Route::get('/employee_markattend','EventsController@markAttend')->name('events.markattend');
-Route::post('/employee_markattend/timein', 'EventsController@markTimein')->name('timein');
+Route::post('/employee_markattend/{id}/timein', 'EventsController@markTimein')->name('timein');
 Route::get('/employee_markattend/{id}', 'EventsController@markAttend')->name('marktimein');
-Route::get('/employee_viewattend', 'EventsController@viewEmployee')->name('viewemployee');
-
+Route::get('/employee_markattend/{id}/{eid}', 'EventsController@markAttendOut')->name('marktimeout');
 
 
 

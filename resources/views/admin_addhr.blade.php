@@ -28,10 +28,10 @@
             <div class="form-group">
                 <select name="designation" id="designation" class="designation dropdown dropdown-toggle dropdown-header" >
                     <option class="dropdown-item" value="">Select Designation</option>
-                    <option class="dropdown-item" value="Ceo">Ceo</option>
-                    <option class="dropdown-item" value="HR">HR</option>
-                    <option class="dropdown-item" value="Developer">Developer</option>
-                    <option class="dropdown-item" value="Manager">Manager</option>
+                    <option class="dropdown-item" value="Ceo">ceo</option>
+                    <option class="dropdown-item" value="HR">hr</option>
+                    <option class="dropdown-item" value="Developer">developer</option>
+                    <option class="dropdown-item" value="Manager">manager</option>
                 </select>
             </div>
             <div class="form-group">

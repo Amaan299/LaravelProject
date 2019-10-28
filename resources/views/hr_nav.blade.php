@@ -9,6 +9,7 @@
             <li><a href="hr_viewemployee">View Employee</a></li>
             <li><a href="hr_viewattend">View Attendance</a></li>
             <li><a href="hr_viewreport">View Report</a></li>
+            <li><a href="hr_sendmail">Send Mail</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/"><span class="glyphicon glyphicon-user"></span> Logout</a></li>

@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-md-5">
             <h2 style="color: blue">Login Form</h2>
-            <form action="validation" method="POST">
+            <form action="employee_markattend" method="POST">
                 {{--{{method_field('put')}}--}}
                 {{csrf_field()}}
                 <div class="mt-4">
@@ -42,9 +42,9 @@
                 <div class="mt-2">
                     <select autofocus class="form-control" type="text" name="designation" >
                         <option  value="none" >--- Select One ---</option>
-                        <option  value="hr" >HR</option>
-                        <option  value="developer">Developer</option>
-                        <option value="ceo">CEO</option>
+                        <option  value="hr" >hr</option>
+                        <option  value="developer">developer</option>
+                        <option value="ceo">ceo</option>
                     </select>
                 </div>
                 <div class="mt-2">

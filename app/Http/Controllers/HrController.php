@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\EmployeeModel;
 use App\Events;
+use App\myMail;
 use Illuminate\Http\Request;
 class HrController extends Controller
 {
@@ -66,4 +67,37 @@ class HrController extends Controller
         $employee = Events::all();
         return view('hr_viewattend',compact('employee'));
     }
+
+
+    public function deleteAttend($id){
+        $hr = Events::find($id);
+        $hr->delete();
+        return redirect('hr_viewattend');
+    }
+    public function editAttend($id){
+        $hr = Events::find($id);
+        return view('editAttend',compact('hr','id'));
+    }
+    public function updateAttend($id){
+        $hr = Events::find($id);
+        $hr->emp_name = request('name');
+        $hr->mydate = request('mydate');
+        $hr->time_in = request('time_in');
+        $hr->time_out = request('time_out');
+
+        $hr->save();
+
+        return redirect('hr_viewattend');
+    }
+    public function addMail(){
+        $myMail = new myMail();
+
+        $myMail->to = request('to');
+        $myMail->subject = request('subject');
+        $myMail->body = request('body');
+
+        $myMail->save();
+        return view('hr');
+    }
+
 }

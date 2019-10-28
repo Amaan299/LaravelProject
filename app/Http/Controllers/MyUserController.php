@@ -13,6 +13,7 @@ class MyUserController extends Controller
 {
     public function Validation(){
        $employees = EmployeeModel::all();
+
        //$myTime = Events::all();
 
        $email = request('email');
@@ -28,15 +29,16 @@ class MyUserController extends Controller
             ])->setCallbacks([]);
 
        foreach ($employees as $emp){
-           $id = $emp->id;
-           $myTime = Events::where('emp_id',$id)->latest('created_at')->first();
 
-           if(( "$email" == $emp->email) && ("$pass" == $emp->password) && ($desig == "developer")){
+       //     dd($email,$pass,$desig);
+           if(( $email == "$emp->email") && ($pass == "$emp->password") && ($desig == "$emp->designation")){
 
-               return view('employee_markattend',[
+               return redirect('/employee_markattend/'. $emp->id);
+               /*return view('employee_markattend',[
                    'myTime' => $myTime,
-                   'calendar' => $calendar
-               ]);
+                   'calendar' => $calendar,
+                   'emp' => $emp
+               ]);*/
            }
            else if(($emp->email == "$email") && ($emp->password == "$pass") && ($desig == "hr")){
                return view('hr');

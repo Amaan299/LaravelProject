@@ -7,53 +7,59 @@ use App\Events;
 use App\MyUser;
 use Illuminate\Http\Request;
 use MaddHatter\LaravelFullcalendar\Facades\Calendar;
+use function Sodium\compare;
 
 class EventsController extends Controller
 {
-    public function markTimein()
+    public function markTimein($id)
     {
-        /* dd(request());
-         exit;*/
+     /*    dd(request()->all());*/
+     //   dd($id);
         $mytime = new Events();
+
         $endtime = request('EndTime');
         $starttime = request('CurrTime');
+        $mydate = request('mydate');
+        $emp_id = request('emp_id');
+        $emp_name = request('emp_name');
+       // dd($endtime,$starttime,$mydate,$emp_id,$emp_name);
+
         $mytime->time_in = $starttime;
-        if (isset($endtime)) {
+        $mytime->mydate = $mydate;
+        $mytime->emp_id = $emp_id;
+        $mytime->emp_name = $emp_name;
+
+        if(isset($endtime)){
             $mytime->time_out = $endtime;
-        } else {
-            $mytime->time_out = ' ';
+        }
+        else{
+            $mytime->time_out = '';
         }
 
         $mytime->save();
 
-        return redirect('/employee_markattend');
+        return redirect('/employee_markattend/'. $id);
     }
 
-    public function viewEmployee()
-    {
-        $employee = Events::all();
-
-        return view('employee_viewattend', compact('employee'));
-    }
-
-    public function markAttend()
+    public function markAttend($id)
     {
 
         $events = [];
-        $employees = EmployeeModel::all();
+        $employees = EmployeeModel::find($id);
+
 
         $calendar = Calendar::addEvents($events)
             ->setOptions([
                 'firstday' => 1
             ])->setCallbacks([]);
-        foreach ($employees as $emp) {
-            $id = $emp->id;
-            $myTime = Events::where('emp_id', $id)->latest()->first();
+
+            $myTime = Events::where('mydate',date('Y-m-d'))
+                ->where('emp_id',$id)
+                ->latest()->first();
             return view('employee_markattend', [
                 'myTime' => $myTime,
-                'calendar' => $calendar
+                'calendar' => $calendar,
+                'emp' => $employees
             ]);
-
-        }
     }
 }

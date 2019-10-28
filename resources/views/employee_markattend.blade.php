@@ -4,6 +4,7 @@
     <div id="page-wrapper" style="height: 200px">
 
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css" />
+        <link rel="stylesheet" href="/css/MyStyle.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
@@ -20,36 +21,37 @@
                 <div class="container" style="width: 84%;">
                     <h4 style="text-align: center">Employee Attendance</h4>
 
-                    <form method="POST" action="/employee_markattend/timein">
+                    <form method="POST" action="/employee_markattend/{{$emp->id}}/timein">
                         {{csrf_field()}}
+                        <div class="row">
+                            <div class="col-sm-6 ml-5"><input name="mydate"   type="hidden"   value="{{date('Y-m-d')}}"  style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e;" >
+                            </div>
+                            <div class="col-sm-6 ml-5"><input name="emp_id"   type="hidden"   value={{$emp->id}}  style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e;" >
+                            </div>
 
+                            <div class="col-sm-6 ml-5"><input name="emp_name"   type="hidden"   value={{$emp->name}}  style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e;" >
+                            </div>
+
+                        </div>
                         <div class="row">
                             <div class="col-sm-6"><button required id="in"  type="button" class="btn btn-primary" onclick="DothisFun()" style="font-size:16px;padding: 8px;font-size: 16px;width: 100%; " >Time in </button>
                             </div>
-                            <div class="col-sm-6"><input name="CurrTime" value="@if(isset($myTime->time_in)){{ $myTime->time_in }}@endif" class="ShowTime" type="text"  placeholder="Starting Time"  disabled="disabled" style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e;" >
+                            <div class="col-sm-6"><input readonly name="CurrTime" value="{{ (isset($myTime->time_in) && $myTime->emp_id==$emp->id) ? $myTime->time_in : '' }}" class="ShowTime" type="text"  placeholder="Starting Time" style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e;" >
                             </div>
-                        </div>
+                   </div>
                         <div class="row">
                             <div class="col-sm-6"><button required type="button" class="btn btn-danger" onclick="DothisFun2()" style="font-size:16px;padding: 8px;font-size: 16px;width: 100%; margin-top: 5px;"  >Time Out </button>
                             </div>
-                            <div class="col-sm-6"><input name="EndTime" value="@if(isset($myTime->time_out)){{ $myTime->time_out }}@endif" class="ShowEndTime" type="text"  placeholder="Leaving Time"  disabled style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e ;margin-top: 5px;" ></div>
-                            <p class="demo-picked" >
-                                <span data-calendar-label="picked" id="pick" style="display: none"></span>
-
-                                <input style="display: none" type="text" class="ShowTime" name="CurrTime">
-                                <input style="display: none" type="text" class="ShowEndTime" name="EndTime">
-
-                        </div>
-                        <div class="row">
+                            <div class="col-sm-6"><input readonly name="EndTime" value="{{ (isset($myTime->time_out) && $myTime->emp_id==$emp->id) ? $myTime->time_out : '' }}" class="ShowEndTime" type="text"  placeholder="Leaving Time" style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e ;margin-top: 5px;" ></div>
+                           </div>
+                            <div class="row">
                             <div class="col-sm-6">
                                 <button type="submit" class="btn btn-success" style="font-size:16px;padding: 8px;font-size: 16px;width: 100%; inherit ; margin-top: 10px; ">Save Time</button>
                             </div>
                             <div class="col-sm-6">
                                 <button type="button" id="CancelBox" class="btn btn-danger" style="font-size: 16px;margin: auto;margin-top: 10px;width: 100%;background-color: #be3a31;padding: 8px;">Cancel</button>
                             </div>
-
-                            </p>
-                        </div>
+                            </div>
                     </form>
                 </div>
             </div>
