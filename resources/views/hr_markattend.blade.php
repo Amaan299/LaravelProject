@@ -1,16 +1,16 @@
 @extends('layout')
-@extends('employee_nav')
+@extends('hr_nav')
 @section('markattend')
     <div id="page-wrapper" style="height: 200px">
 
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css" />
-        <link rel="stylesheet" href="/css/MyStyle.css">
+        <link rel="stylesheet" href="/css/MyStyle1.css">
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
 
-        {!! $calendar->calendar() !!}
-        {!! $calendar->script() !!}
+    {!! $calendar->calendar() !!}
+    {!! $calendar->script() !!}
 
     <!-- The Modal -->
         <div id="myModal" style="margin-left: 35%" class="modal" >
@@ -21,7 +21,7 @@
                 <div class="container" style="width: 84%;">
                     <h4 style="text-align: center">Employee Attendance</h4>
 
-                    <form method="POST" action="/employee_markattend/{{$emp->id}}/timein">
+                    <form method="POST" action="/hr_markattend/{{$emp->id}}/timein">
                         {{csrf_field()}}
                         <div class="row">
                             <div class="col-sm-6 ml-5"><input name="mydate"   type="hidden"   value="{{date('Y-m-d')}}"  style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e;" >
@@ -38,20 +38,20 @@
                             </div>
                             <div class="col-sm-6"><input readonly name="CurrTime" value="{{ (isset($myTime->time_in) && $myTime->emp_id==$emp->id) ? $myTime->time_in : '' }}" class="ShowTime" type="text"  placeholder="Starting Time" style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e;" >
                             </div>
-                   </div>
+                        </div>
                         <div class="row">
                             <div class="col-sm-6"><button required type="button" {{(isset($myTime->time_out) && ($myTime->time_out!='')) ? "disabled" : '' }} class="btn btn-danger" onclick="DothisFun2()" style="font-size:16px;padding: 8px;font-size: 16px;width: 100%; margin-top: 5px;"  >Time Out </button>
                             </div>
                             <div class="col-sm-6"><input readonly name="EndTime" value="{{ (isset($myTime->time_out) && $myTime->emp_id==$emp->id) ? $myTime->time_out : '' }}" class="ShowEndTime" type="text"  placeholder="Leaving Time" style="width: 100%;padding: 8px;border-radius: 8px;border: 2px solid #411c0e ;margin-top: 5px;" ></div>
-                           </div>
-                            <div class="row">
+                        </div>
+                        <div class="row">
                             <div class="col-sm-6">
                                 <button type="submit" {{((isset($myTime->time_in)) && (isset($myTime->time_out)) && ($myTime->time_out!='') ) ? "disabled" : '' }} class="btn btn-success" style="font-size:16px;padding: 8px;font-size: 16px;width: 100%; inherit ; margin-top: 10px; ">Save Time</button>
                             </div>
                             <div class="col-sm-6">
                                 <button type="button" id="CancelBox" class="btn btn-danger" style="font-size: 16px;margin: auto;margin-top: 10px;width: 100%;background-color: #be3a31;padding: 8px;">Cancel</button>
                             </div>
-                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -112,7 +112,6 @@
                     modal.style.display = "none";
                 }
             }
-
 
         </script>
 

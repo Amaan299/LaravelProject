@@ -9,28 +9,20 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Attendance System</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <a style="text-align: center;color: white" href="#">Attendance System</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="login.php">Home <span class="sr-only">(current)</span></a>
-            </li>
-
-        </ul>
-
-    </div>
 </nav>
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-5">
-            <h2 style="color: blue">Login Form</h2>
-            <form action="employee_markattend" method="POST">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" style="margin-top: 10rem;">
+            <h2 style="text-align: center;color: #8eb4cb" >Login Form</h2>
+            <form  action="employee_markattend"  method="POST">
                 {{--{{method_field('put')}}--}}
                 {{csrf_field()}}
                 <div class="mt-4">
@@ -39,22 +31,15 @@
                 <div class="mt-2">
                     <input class="form-control" type="password" name="password" placeholder="Password">
                 </div>
-                <div class="mt-2">
-                    <select autofocus class="form-control" type="text" name="designation" >
-                        <option  value="none" >--- Select One ---</option>
-                        <option  value="hr" >hr</option>
-                        <option  value="developer">developer</option>
-                        <option value="ceo">ceo</option>
-                    </select>
-                </div>
+
                 <div class="mt-2">
                     <input class="btn btn-primary mt-4" type="submit" name="login" value="Login">
                 </div>
 
             </form>
         </div>
-
-
+        <div class="col-md-4"></div>
+    </div>
     </div>
 
 </div>

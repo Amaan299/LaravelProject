@@ -31,14 +31,19 @@
                             <a href="/admin_viewhr/{{$emp->id}}/edit" class="btn btn-primary" name="update" value="Update">Update</a>
                         </td>
                         <td>
-                            <form action="/admin_viewhr/{{$emp->id}}/delete" method="POST">
+                            <form class="delete" action="/admin_viewhr/{{$emp->id}}/delete" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button class="btn btn-danger" name="delete" value="Delete">Delete</button>
+                                <button type="submit" class="btn btn-danger" name="delete" value="Delete">Delete</button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
+                <script>
+                    $(".delete").on("submit", function(){
+                        return confirm("Do you want to delete this item?");
+                    });
+                </script>
                 </tbody>
             </table>
 @endsection

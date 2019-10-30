@@ -3,7 +3,7 @@
 @section('addemployee')
     <div class="employee-form">
         <div class="col-lg-4"></div>
-        <form action="/hr_addemployee" method="POST" class="col-lg-4">
+        <form action="/hr_addemployee" style="margin-top: 10rem" method="POST" class="col-lg-4">
             {{ csrf_field() }}
             <h4 class="text-center" style="color: #2a88bd">Employee Form</h4>
             <input type="hidden" id="id" name="id" >
@@ -27,10 +27,9 @@
             </div>
             <div class="form-group">
                 <select name="designation" id="designation" class="designation dropdown dropdown-toggle dropdown-header" >
-                    <option class="dropdown-item" value="">Select Designation</option>
-                    <option class="dropdown-item" value="HR">hr</option>
-                    <option class="dropdown-item" value="Developer">developer</option>
-                    <option class="dropdown-item" value="Manager">manager</option>
+                    <option class="dropdown-item" value="Developer">Developer</option>
+                    <option class="dropdown-item" value="Manager">Manager</option>
+                    <option class="dropdown-item" value="Hr">Hr</option>
                 </select>
             </div>
             <div class="form-group">

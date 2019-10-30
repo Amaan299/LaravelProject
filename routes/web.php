@@ -25,7 +25,7 @@ Route::get('/admin',function (){
     return view('admin');
 });
 //Route::post('validation', 'MyUserController@index')->name('validate');
-Route::post('/employee_markattend', 'MyUserController@validation')->name('validate');
+Route::post('/employee_markattend', 'MyUserController@Validation')->name('validate');
 
 Route::get('/admin_addhr', 'AdminController@addHr')->name('hr_addemployee');
 Route::post('/admin_addhr', 'AdminController@store')->name('admin_addhr');
@@ -45,9 +45,16 @@ Route::delete('/hr_viewemployee/{deleteemployee}/delete','HrController@deleteEmp
 Route::put('/hr_viewemployee/{editemployee}','HrController@updateEmployee');
 Route::get('/hr_viewemployee/{editemployee}','HrController@viewEmployee');
 
-Route::get('/hr_sendmail',function(){
+Route::post('/hr_viewattendofmonth','HrController@viewAttendOfMonth');
+
+Route::post('/hr_markattend/{id}/timein', 'HrController@markTimein')->name('timein');
+Route::get('/hr_markattend/{id}', 'HrController@markAttend')->name('marktimein');
+
+
+/*Route::get('/hr_sendmail',function(){
     return view('hr_sendmail');
-});
+});*/
+
 Route::post('/hr_addmail', 'HrController@addMail')->name('hr_addmail');
 
 Route::get('/hr_viewattend/{editattend}/edit','HrController@editAttend');
@@ -57,11 +64,11 @@ Route::get('/hr_viewattend/{editattend}','HrController@viewAttend');
 
 Route::get('/hr_viewattend', 'HrController@viewAttend')->name('hr_viewattend');
 Route::get('/hr_viewreport', 'HrController@viewReport')->name('hr_viewreport');
+Route::delete('/hr_viewreport/{deletereport}/delete','HrController@deleteReport');
 
 
 Route::post('/employee_markattend/{id}/timein', 'EventsController@markTimein')->name('timein');
 Route::get('/employee_markattend/{id}', 'EventsController@markAttend')->name('marktimein');
-Route::get('/employee_markattend/{id}/{eid}', 'EventsController@markAttendOut')->name('marktimeout');
 
 
 

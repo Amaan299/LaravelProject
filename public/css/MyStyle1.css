@@ -1,0 +1,6 @@
+.fc-state-highlight{
+    background-color: #bce8f1 !important;
+}
+.fc-state-highlight:hover{
+    cursor: pointer;
+}

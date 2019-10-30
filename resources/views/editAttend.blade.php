@@ -23,7 +23,7 @@
             </div>
             <div class="form-group text-center">
                 <button type="submit" id=submit" name="submit" class="btn btn-primary">Edit Employee</button>
-
+                <a href="/hr_viewattend" class="btn btn-success" name="back" value="Back">Back</a>
             </div>
         </form>
     </div>

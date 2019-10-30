@@ -1,7 +1,8 @@
 @extends('layout')
 @extends('hr_nav')
 @section('hrviewattend')
-    <h1 style="text-align: center;color: #1f648b;margin-left: 100px">Employee Attendance <h1>
+    <h1 style="text-align: center;color: #1f648b;margin-left: 100px">Employee Attendance <div>
+
             <table class="table table-striped table-bordered table-hover text-center" style="margin-left: 250px;width: 80%">
                 <thead >
                 <tr >
@@ -23,14 +24,19 @@
                             <a href="/hr_viewattend/{{$emp->id}}/edit" class="btn btn-primary" name="update" value="Update">Update</a>
                         </td>
                         <td>
-                            <form action="/hr_viewattend/{{$emp->id}}/delete" method="POST">
+                            <form class="delete" action="/hr_viewattend/{{$emp->id}}/delete" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-                                <button class="btn btn-danger" name="delete" value="Delete">Delete</button>
+                                <button type="submit" class="btn btn-danger" name="delete" value="Delete">Delete</button>
                             </form>
                         </td>
                     </tr>
                 @endforeach
+                <script>
+                    $(".delete").on("submit", function(){
+                        return confirm("Do you want to delete this item?");
+                    });
+                </script>
                 </tbody>
             </table>
 @endsection

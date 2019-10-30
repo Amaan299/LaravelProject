@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function viewHr(){
         $hr = EmployeeModel::all()
-            ->where('designation','HR');
+            ->where('designation','Hr');
         return view('admin_viewhr',compact('hr'));
     }
 
@@ -21,8 +21,11 @@ class AdminController extends Controller
         $hr = EmployeeModel::find($id);
         return view('editHr',compact('hr','id'));
     }
-    public function updateHr($id){
+    public function updateHr($id,Request $request){
         $hr = EmployeeModel::find($id);
+        $request->validate([
+            "email" => "required"
+        ]);
         $hr->name = request('name');
         $hr->email = request('email');
         $hr->username = request('user_name');
@@ -37,10 +40,12 @@ class AdminController extends Controller
         return redirect('admin_viewhr');
     }
 
-    public function store(){
+    public function store(Request $request){
 
         $employee = new EmployeeModel();
-
+        $request->validate([
+            "email" => "required"
+        ]);
         $employee->name = request('name');
         $employee->email = request('email');
         $employee->username = request('user_name');

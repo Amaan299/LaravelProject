@@ -11,14 +11,16 @@ use validator;
 use DB;
 class MyUserController extends Controller
 {
-    public function Validation(){
+    public function Validation( Request $request){
        $employees = EmployeeModel::all();
 
        //$myTime = Events::all();
 
        $email = request('email');
        $pass = request('password');
-       $desig = request('designation');
+       $request->validate([
+            "email" => "required"
+        ]);
 
         $events = [];
 
@@ -31,21 +33,16 @@ class MyUserController extends Controller
        foreach ($employees as $emp){
 
        //     dd($email,$pass,$desig);
-           if(( $email == "$emp->email") && ($pass == "$emp->password") && ($desig == "$emp->designation")){
-
+           if(( $email == "$emp->email") && ($pass == "$emp->password") && ($emp->designation == "Developer")){
                return redirect('/employee_markattend/'. $emp->id);
-               /*return view('employee_markattend',[
-                   'myTime' => $myTime,
-                   'calendar' => $calendar,
-                   'emp' => $emp
-               ]);*/
            }
-           else if(($emp->email == "$email") && ($emp->password == "$pass") && ($desig == "hr")){
+           else if(($emp->email == "$email") && ($emp->password == "$pass") && ($emp->designation == "Hr")){
                return view('hr');
            }
-           else if(($emp->email == "$email") && ($emp->password == "$pass") && ($desig == "ceo")){
+           else if(($emp->email == "$email") && ($emp->password == "$pass") && ($emp->designation == "Ceo")){
                return view('admin');
            }
+
        }
     }
 
